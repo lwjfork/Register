@@ -1,0 +1,48 @@
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: "com.github.johnrengelman.shadow"
+
+// publishing 是由 maven-publish 插件提供的 DSL
+publishing {
+    //设置构建产物的基础信息，即要发布的内容是什么。
+    publications {
+        release(MavenPublication) {
+            groupId  mavenGroupId
+            artifactId  mavenArtifactId
+            version  mavenPublishVersion
+            from components.java
+        }
+//        snapshot(MavenPublication) {
+//            groupId = mavenGroupId
+//            artifactId = mavenArtifactId
+//            version = mavenPublishVersion + '-SNAPSHOT'
+//            from components.java
+//            artifact shadowJar
+//        }
+    }
+
+}
+
+bintray {
+    user = System.getenv("BINTRAY_USER") //
+//# key
+    key = System.getenv("BINTRAY_APIKEY")
+    publications = [ 'release' ] //上一部分中MavenPublication的列表
+
+    pkg {
+        repo = 'maven'  //保留，表示上传bintray中的maven仓库
+        name = mavenArtifactId
+        desc = "description"
+        licenses = ['Apache-2.0']
+        publicDownloadNumbers = true
+
+        version {
+            name = mavenPublishVersion
+            desc = ''
+        }
+    }
+}
+
+
+
+

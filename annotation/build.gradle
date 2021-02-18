@@ -1,0 +1,39 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+
+
+
+tasks.jar {
+    FileTree dir =  fileTree(dir:'libs',include:['*.jar'])
+    dir.visit {FileTreeElement element->
+        from(zipTree(element.file))
+    }
+}
+
+
+
+
+
+
+rootProject.ext.PROJ_VERSION = rootProject.publishVersion.annotation
+rootProject.ext.PROJ_ARTIFACTID = rootProject.publishArtifactId.annotation
+rootProject.ext.PROJ_NAME = rootProject.publishArtifactId.annotation
+rootProject.ext.PROJ_PACKAGING = 'jar'
+rootProject.ext.PROJ_DESCRIPTION = 'update'
+rootProject.ext.PROJ_GROUP = rootProject.publishGroup
+
+//apply from: '../publishLocal.gradle'
+apply from: '../bintray.gradle'
+
+

@@ -1,0 +1,41 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+}
+import org.gradle.internal.jvm.Jvm
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+
+
+
+
+dependencies {
+    compileOnly files(Jvm.current().getToolsJar())
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "com.squareup:javapoet:1.11.1"
+    implementation "${rootProject.publishGroup}:${rootProject.publishArtifactId.annotation}:${rootProject.publishVersion.annotation}"
+
+}
+
+tasks.jar {
+    FileTree dir =  fileTree(dir:'libs',include:['*.jar'])
+    dir.visit {FileTreeElement element->
+        from(zipTree(element.file))
+    }
+}
+
+
+
+rootProject.ext.PROJ_VERSION = rootProject.publishVersion.baseApt
+rootProject.ext.PROJ_ARTIFACTID = rootProject.publishArtifactId.baseApt
+rootProject.ext.PROJ_NAME = rootProject.publishArtifactId.baseApt
+rootProject.ext.PROJ_PACKAGING = 'jar'
+rootProject.ext.PROJ_DESCRIPTION = 'update'
+rootProject.ext.PROJ_GROUP = rootProject.publishGroup
+
+//apply from: '../publishLocal.gradle'
+apply from: '../bintray.gradle'

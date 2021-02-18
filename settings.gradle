@@ -1,0 +1,4 @@
+include ':registerApt'
+include ':annotation'
+include ':app'
+rootProject.name = "Register"
