@@ -16,10 +16,4 @@ import java.lang.annotation.Target;
 @Repeatable(AspectClasses.class)
 public @interface AspectClass {
 
-    /**
-     * 需要被注入的接口
-     *
-     * @return
-     */
-    Class<?> value();
 }

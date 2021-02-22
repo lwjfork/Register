@@ -18,21 +18,6 @@ import java.lang.annotation.Target;
 public @interface AspectMethodName {
 
 
-    /**
-     * 忽略的类
-     * 为了解耦，可以指定类名即可
-     *
-     * @return
-     */
-    String[] ignore() default {};
-
-    /**
-     * 忽略的类
-     * 为了解耦，可以指定类名即可
-     *
-     * @return
-     */
-    Class<?>[] ignoreName() default {};
 
 
     /**
@@ -42,12 +27,5 @@ public @interface AspectMethodName {
      */
     String value();
 
-    /**
-     * 调用初始化方法时，是否应该忽略自己
-     * 默认忽略自己
-     *
-     * @return
-     */
-    boolean ignoreSelf() default true;
 
 }
