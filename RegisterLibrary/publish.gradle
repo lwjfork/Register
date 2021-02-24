@@ -1,0 +1,111 @@
+apply plugin: 'com.jfrog.artifactory'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
+
+def pomConfig = {
+    //设置开源证书信息
+    licenses {
+        license {
+            name 'The Apache Software License, Version 2.0'
+            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+        }
+    }
+    //添加开发者信息
+    developers {
+        developer {
+            id rootProject.ext.DEVELOPER_ID
+            name rootProject.ext.DEVELOPER_NAME
+            email rootProject.ext.DEVELOPER_EMAIL
+        }
+    }
+
+    scm {
+        connection rootProject.ext.PROJ_VCSURL
+        developerConnection rootProject.ext.PROJ_VCSURL
+        url rootProject.ext.PROJ_WEBSITEURL
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+    options.addStringOption('charSet ', 'UTF-8')
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        links "http://docs.oracle.com/javase/7/docs/api"
+    }
+}
+publishing {
+    publications.configureEach{
+        groupId rootProject.ext.PROJ_GROUP
+        artifactId rootProject.ext.PROJ_ARTIFACTID
+        from components.java
+        // 生成产物的配置
+        artifact sourcesJar
+        artifact javadocJar
+
+        //将aar的依赖库添加到pom文件中
+        pom.withXml {
+            def root = asNode()
+            root.appendNode('description', rootProject.ext.PROJ_DESCRIPTION)
+            root.children().last() + pomConfig
+        }
+    }
+    publications {
+        release(MavenPublication) {
+            version rootProject.ext.PROJ_VERSION
+        }
+        snapshot(MavenPublication) {
+            version rootProject.ext.PROJ_VERSION + '-SNAPSHOT'
+        }
+    }
+}
+
+//配置上传Bintray相关信息
+bintray {
+    user = rootProject.ext.BINTRAY_USER
+    key = rootProject.ext.BINTRAY_APIKEY
+    publications = ['release']
+    pkg {
+        repo = rootProject.ext.PROJ_REPO//上传的中央仓库名称
+        name = rootProject.ext.PROJ_NAME//上传的项目的名字
+        websiteUrl = rootProject.ext.PROJ_WEBSITEURL
+        vcsUrl = rootProject.ext.PROJ_VCSURL
+        licenses = ["Apache-2.0"]
+        version {
+            name = rootProject.ext.PROJ_VERSION
+        }
+        publish = true  //是否发布
+    }
+}
+
+artifactory {
+    contextUrl = 'https://oss.jfrog.org/artifactory'
+    resolve {
+        repository {
+            repoKey = 'libs-release'
+        }
+    }
+    publish {
+        repository {
+            repoKey = 'oss-snapshot-local'
+            username = rootProject.ext.BINTRAY_USER
+            password = rootProject.ext.BINTRAY_APIKEY
+        }
+        defaults {
+            publications('snapshot')
+            publishArtifacts = true
+        }
+    }
+}

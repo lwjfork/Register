@@ -1,19 +1,37 @@
+//#这里改成开发者id，比如
+rootProject.ext.DEVELOPER_ID = 'lwjfork'
+//#这里改成开发者名字，比如android
+rootProject.ext.DEVELOPER_NAME = 'lwjfork'
+//#这里改成开发者邮箱，比如[email]someone@android.com[/email]
+rootProject.ext.DEVELOPER_EMAIL = 'lwjfork@gmail.com'
+//#  这里改成groupId，比如com.android.support
+rootProject.ext.PROJ_GROUP = 'com.lwjfork.register'
+//#这里改成github地址，比如https://github.com/android/appcompat
+rootProject.ext.PROJ_WEBSITEURL = 'https://github.com/lwjfork/Register'
+//          #这里改成issue地址，比如https://github.com/android/appcompat/issues
+rootProject.ext.PROJ_ISSUEURL = 'https://github.com/lwjfork/Register/issues'
+//        #这里改成版本控制地主，比如https://github.com/android/appcompat.git
+rootProject.ext.PROJ_VCSURL = 'https://github.com/lwjfork/Register.git'
+// 中央仓库名称
+rootProject.ext.PROJ_REPO = "maven"
+//  # 用户名
+rootProject.ext.BINTRAY_USER = System.getenv("BINTRAY_USER") //
+//# key
+rootProject.ext.BINTRAY_APIKEY = System.getenv("BINTRAY_APIKEY")
+
 ext {
 
     publishGroup = 'com.lwjfork.register'
     publishVersion = [
-            annotation: '1.1.3',
-            registerApt   : '1.1.2'
-    ]
-
-    publishSnapshotVersion = [
-            annotation: '1.1.2-SNAPSHOT',
-            registerApt   : '1.1.2-SNAPSHOT'
+            annotation: '1.0.0',
+            registerApt   : '1.0.0',
+            baseRegisterPlugin: '1.0.0'
     ]
 
     publishArtifactId = [
             annotation: 'annotation',
-            registerApt   : 'registerApt'
+            registerApt   : 'registerApt',
+            baseRegisterPlugin: 'base-register-plugin'
     ]
 
     classpathRep = [
@@ -36,22 +54,16 @@ ext {
     ]
 
     dependenciesRep = [
+            androidGradle       : "com.android.tools.build:gradle:3.6.0",
+            Gson                : "com.google.code.gson:gson:2.8.2",
+            groovy              : 'org.codehaus.groovy:groovy-all:2.5.8',
+            javassist           : 'org.javassist:javassist:3.21.0-GA',
+            javapoet            : 'com.squareup:javapoet:1.11.1',
+            androidGradleAdapter: 'com.lwjfork.gradle:android-gradle-adapter:0.0.5',
+            androidGradleUtils  : 'com.lwjfork.gradle:android-gradle-utils:0.0.4',
+            commonAop           : 'com.lwjfork.gradle:common-aop:0.0.5',
 
-            javapoet         : 'com.squareup:javapoet:1.11.1',
-            javassist        : 'org.javassist:javassist:3.21.0-GA',
-
-            multidex         : "com.android.support:multidex:1.0.1",
-            AndroidXmultidex : "androidx.multidex:multidex:2.0.1",
-            appcompatX       : 'androidx.appcompat:appcompat:1.0.2',
-            appcompatV7      : "com.android.support:appcompat-v7:27.1.1",
-            design           : "com.android.support:design:27.1.1",
-            lifecycle        : "androidx.lifecycle:lifecycle-runtime:2.0.0",
-            recyclerView     : 'androidx.recyclerview:recyclerview:1.0.0',
-            constraintlayoutX: 'androidx.constraintlayout:constraintlayout:1.1.3',
-            Gson             : "com.google.code.gson:gson:2.8.2",
-            kotlin_stdlib    : "org.jetbrains.kotlin:kotlin-stdlib:1.3.0",
-            // https://github.com/bumptech/glide
-            Glide            : "com.github.bumptech.glide:glide:4.8.0",
+    
     ]
 
 }

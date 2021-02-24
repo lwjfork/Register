@@ -1,0 +1,36 @@
+plugins {
+    id 'groovy'
+    id 'java'
+}
+
+group 'com.lwjfor.regsiter.base'
+version '1.0.0'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    google()
+    jcenter()
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation rootProject.dependenciesRep.androidGradle
+    implementation rootProject.dependenciesRep.javassist
+    implementation rootProject.dependenciesRep.androidGradleAdapter
+    implementation rootProject.dependenciesRep.androidGradleUtils
+    implementation rootProject.dependenciesRep.commonAop
+    implementation "${rootProject.publishGroup}:${rootProject.publishArtifactId.annotation}:${rootProject.publishVersion.annotation}"
+}
+
+ext{
+    mavenPublishVersion = rootProject.publishVersion.baseRegisterPlugin
+    mavenArtifactId = rootProject.publishArtifactId.baseRegisterPlugin
+    ext.mavenGroupId = rootProject.publishGroup
+    ext.mavenPackaging = 'jar'
+}
+
+
+
+apply from:'../publish.gradle'

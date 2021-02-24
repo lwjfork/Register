@@ -1,0 +1,5 @@
+rootProject.name = 'RegisterLibrary'
+include 'annotation'
+include ':registerApt'
+include ':base-register-plugin'
+

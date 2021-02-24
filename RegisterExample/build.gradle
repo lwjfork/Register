@@ -21,7 +21,7 @@ buildscript {
     }
 }
 
-apply from:'config.gradle'
+apply from:'../config.gradle'
 allprojects {
     repositories {
         mavenLocal()
@@ -34,26 +34,6 @@ allprojects {
     }
 }
 
-//#这里改成开发者id，比如
-rootProject.ext.DEVELOPER_ID = 'lwjfork'
-//#这里改成开发者名字，比如android
-rootProject.ext.DEVELOPER_NAME = 'lwjfork'
-//#这里改成开发者邮箱，比如[email]someone@android.com[/email]
-rootProject.ext.DEVELOPER_EMAIL = 'lwjfork@gmail.com'
-//#  这里改成groupId，比如com.android.support
-rootProject.ext.PROJ_GROUP = 'com.lwjfork.gradle'
-//#这里改成github地址，比如https://github.com/android/appcompat
-rootProject.ext.PROJ_WEBSITEURL = 'https://github.com/lwjfork/Register'
-//          #这里改成issue地址，比如https://github.com/android/appcompat/issues
-rootProject.ext.PROJ_ISSUEURL = 'https://github.com/lwjfork/Register/issues'
-//        #这里改成版本控制地主，比如https://github.com/android/appcompat.git
-rootProject.ext.PROJ_VCSURL = 'https://github.com/lwjfork/Register.git'
-// 中央仓库名称
-rootProject.ext.PROJ_REPO = "maven"
-//  # 用户名
-rootProject.ext.BINTRAY_USER = System.getenv("BINTRAY_USER") //
-//# key
-rootProject.ext.BINTRAY_APIKEY = System.getenv("BINTRAY_APIKEY")
 
 task clean(type: Delete) {
     delete rootProject.buildDir

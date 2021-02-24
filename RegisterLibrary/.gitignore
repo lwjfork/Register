@@ -1,0 +1,11 @@
+# Gradle
+.gradle
+gradlew.bat
+gradlew
+/.idea/workspace.xml
+/.idea/libraries/*
+/.idea
+build
+
+
+gradle/wrapper/*
