@@ -10,10 +10,10 @@ java {
 }
 
 repositories {
-    mavenLocal()
     maven{
         url 'https://dl.bintray.com/lwjfork/maven'
     }
+    mavenLocal()
     mavenCentral()
     google()
     jcenter()
@@ -38,4 +38,6 @@ rootProject.ext.PROJ_PACKAGING = 'jar'
 rootProject.ext.PROJ_DESCRIPTION = 'update'
 rootProject.ext.PROJ_GROUP = rootProject.publishGroup
 
-apply from: '../publish.gradle'
+
+apply from: '../../config.gradle'
+apply from: '../../publish.gradle'

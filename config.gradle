@@ -25,12 +25,14 @@ ext {
     publishVersion = [
             annotation: '1.0.0',
             registerApt   : '1.0.0',
+            registerPlugin: '1.0.0',
             baseRegisterPlugin: '1.0.0'
     ]
 
     publishArtifactId = [
             annotation: 'annotation',
             registerApt   : 'registerApt',
+            registerPlugin: 'register-plugin',
             baseRegisterPlugin: 'base-register-plugin'
     ]
 
@@ -62,7 +64,6 @@ ext {
             androidGradleAdapter: 'com.lwjfork.gradle:android-gradle-adapter:0.0.5',
             androidGradleUtils  : 'com.lwjfork.gradle:android-gradle-utils:0.0.4',
             commonAop           : 'com.lwjfork.gradle:common-aop:0.0.5',
-
     
     ]
 
