@@ -1,4 +1,4 @@
-package com.lwjfork.register.apt
+package com.register.apt.test
 
 import com.lwjfork.register.apt.constant.Annotations
 import com.lwjfork.register.apt.processor.service.ServiceProcessor

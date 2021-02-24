@@ -1,0 +1,15 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "${rootProject.publishGroup}:${rootProject.publishArtifactId.annotation}:${rootProject.publishVersion.annotation}"
+    implementation "${rootProject.publishGroup}:${rootProject.publishArtifactId.registerApt}:${rootProject.publishVersion.registerApt}"
+}

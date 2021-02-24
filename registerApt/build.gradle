@@ -30,9 +30,9 @@ tasks.jar {
 
 
 
-rootProject.ext.PROJ_VERSION = rootProject.publishVersion.baseApt
-rootProject.ext.PROJ_ARTIFACTID = rootProject.publishArtifactId.baseApt
-rootProject.ext.PROJ_NAME = rootProject.publishArtifactId.baseApt
+rootProject.ext.PROJ_VERSION = rootProject.publishVersion.registerApt
+rootProject.ext.PROJ_ARTIFACTID = rootProject.publishArtifactId.registerApt
+rootProject.ext.PROJ_NAME = rootProject.publishArtifactId.registerApt
 rootProject.ext.PROJ_PACKAGING = 'jar'
 rootProject.ext.PROJ_DESCRIPTION = 'update'
 rootProject.ext.PROJ_GROUP = rootProject.publishGroup

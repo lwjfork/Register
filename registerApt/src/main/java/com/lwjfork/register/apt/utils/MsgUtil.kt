@@ -24,7 +24,6 @@ class MsgUtil {
         }
 
 
-
         @JvmStatic
         fun error(msg: String, vararg objs: Any?) {
             warn(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
@@ -46,7 +45,8 @@ class MsgUtil {
 
         @JvmStatic
         private fun printMsg(kind: Diagnostic.Kind, msg: String, vararg objs: Any?) {
-            messager!!.printMessage(kind, String.format(msg, objs))
+            messager?.printMessage(kind, String.format(msg, objs))
+
         }
     }
 

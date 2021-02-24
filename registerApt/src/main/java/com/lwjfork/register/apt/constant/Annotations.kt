@@ -22,9 +22,7 @@ class Annotations {
         var aspectCalledMethod = AspectCalledMethod::class.java.name
         var aspectNameCalledMethod = AspectNameCalledMethod::class.java.name
         var aspectMethod = AspectMethod::class.java.name
-        var aspectNameMethod = AspectNameMethod::class.java.name
         var aspectMethods = AspectMethods::class.java.name
-        var aspectNameMethods = AspectNameMethods::class.java.name
 
 
         val registerAnnotation = listOf(
@@ -38,9 +36,7 @@ class Annotations {
             aspectCalledMethod,
             aspectNameCalledMethod,
             aspectMethod,
-            aspectNameMethod,
-            aspectMethods,
-            aspectNameMethods
+            aspectMethods
         )
     }
 }

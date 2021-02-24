@@ -2,18 +2,18 @@ ext {
 
     publishGroup = 'com.lwjfork.register'
     publishVersion = [
-            annotation: '1.0.0',
-            baseApt   : '1.0.0'
+            annotation: '1.1.3',
+            registerApt   : '1.1.2'
     ]
 
     publishSnapshotVersion = [
-            annotation: '1.0.0-SNAPSHOT',
-            baseApt   : '1.0.0-SNAPSHOT'
+            annotation: '1.1.2-SNAPSHOT',
+            registerApt   : '1.1.2-SNAPSHOT'
     ]
 
     publishArtifactId = [
             annotation: 'annotation',
-            baseApt   : 'base-apt'
+            registerApt   : 'registerApt'
     ]
 
     classpathRep = [

@@ -13,7 +13,6 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-@Repeatable(AspectClasses.class)
 public @interface AspectClass {
 
 }

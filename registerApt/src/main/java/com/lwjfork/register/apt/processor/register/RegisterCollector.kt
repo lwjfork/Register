@@ -44,7 +44,6 @@ class RegisterCollector(
         this.parseAspectInterface()
         this.parseAspectSellClass()
         this.parseAspectSellClasses()
-        this.parseAspectClass()
     }
 
 
@@ -103,11 +102,6 @@ class RegisterCollector(
                 }
             })
         }
-    }
-
-
-    private fun parseAspectClass() {
-
     }
 
 

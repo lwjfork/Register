@@ -1,3 +1,4 @@
+include ':TestRegisterApt'
 include ':registerApt'
 include ':annotation'
 include ':app'
