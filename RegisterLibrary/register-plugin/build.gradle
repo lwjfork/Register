@@ -8,9 +8,6 @@ version '1.0.0'
 
 repositories {
     mavenLocal()
-    maven{
-        url 'https://dl.bintray.com/lwjfork/maven'
-    }
     mavenCentral()
     google()
     jcenter()

@@ -7,9 +7,6 @@ group 'com.lwjfor.regsiter.base'
 version '1.0.0'
 
 repositories {
-    maven{
-        url 'https://dl.bintray.com/lwjfork/maven'
-    }
     mavenLocal()
     mavenCentral()
     google()

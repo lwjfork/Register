@@ -2,18 +2,14 @@ buildscript {
     ext.kotlin_version = "1.3.72"
     repositories {
         mavenLocal()
-        maven{
-           url 'https://dl.bintray.com/lwjfork/maven'
-        }
         mavenCentral()
         google()
         jcenter()
     }
     dependencies {
-        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.1.1"
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.5.4"
         classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.18"
     }
 }
 plugins {
@@ -28,6 +24,6 @@ repositories {
     google()
     jcenter()
 }
-apply from:'../config.gradle'
+apply from: '../config.gradle'
 dependencies {
 }
