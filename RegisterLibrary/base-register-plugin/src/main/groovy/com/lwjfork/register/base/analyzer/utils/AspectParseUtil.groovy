@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
+import com.lwjfork.android.gradle.aop.annotation.AnnotationParseUtil
 import com.lwjfork.android.gradle.aop.utils.PluginUtils
 import com.lwjfork.aop.collector.model.CompileDirModel
 import com.lwjfork.aop.collector.model.CompileJarModel
@@ -13,7 +14,6 @@ import com.lwjfork.register.base.constant.AnnotationConstant
 import com.lwjfork.register.model.AspectCallMethod
 import com.lwjfork.register.model.AspectMethod
 import com.lwjfork.register.model.ParseAspectModel
-import com.lwjfork.register.base.anotation.AnnotationParseUtil
 import com.lwjfork.register.base.model.CallMethodInfoModel
 import com.lwjfork.register.base.model.InitMethodInfoModel
 import com.lwjfork.register.base.model.RegisterInfo
@@ -159,7 +159,7 @@ class AspectParseUtil {
         }
         if (ctMethod.hasAnnotation(AnnotationConstant.aspectMethodNames)) {
             Annotation annotation = methodAttr.getAnnotation(AnnotationConstant.aspectMethodNames)
-            AnnotationParseUtil.parseRepeatAnnotations(jsonArray, annotation);
+            AnnotationParseUtil.parseRepeatAnnotations(jsonArray, annotation)
         }
         return jsonArray
     }

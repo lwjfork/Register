@@ -1,5 +1,6 @@
 package com.lwjfork.register.base.analyzer.analyzer
 
+import com.google.gson.GsonBuilder
 import com.lwjfork.android.gradle.aop.analyzer.SimpleAopAnalyzer
 import com.lwjfork.android.gradle.aop.utils.PluginUtils
 import com.lwjfork.gradle.adapter.model.VariantInfoModel
@@ -17,7 +18,6 @@ class RegisterInfoAnalyzer extends SimpleAopAnalyzer {
     private VariantInfoModel variantInfoModel
 
     RegisterInfoAnalyzer(Project project, VariantInfoModel variantInfoModel, RegisterInfo registerInfo) {
-
         this.registerInfo = registerInfo
         this.project = project
         this.variantInfoModel = variantInfoModel
@@ -35,6 +35,8 @@ class RegisterInfoAnalyzer extends SimpleAopAnalyzer {
     private void outputRegisterInfo() {
         String outPath = this.getOutPutDir(project, variantInfoModel)
         PluginUtils.printJsonFile(registerInfo, outPath, "${variantInfoModel.variantName}_${RegisterConstant.REGISTER_INFO}")
+        String json = new GsonBuilder().enableComplexMapKeySerialization().setPrettyPrinting().create().toJson(registerInfo)
         Logger.i("save registerInfo  to dir $outPath")
+        Logger.i(json)
     }
 }
