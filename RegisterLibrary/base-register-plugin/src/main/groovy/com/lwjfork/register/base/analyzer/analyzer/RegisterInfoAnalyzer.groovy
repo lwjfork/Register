@@ -37,6 +37,5 @@ class RegisterInfoAnalyzer extends SimpleAopAnalyzer {
         PluginUtils.printJsonFile(registerInfo, outPath, "${variantInfoModel.variantName}_${RegisterConstant.REGISTER_INFO}")
         String json = new GsonBuilder().enableComplexMapKeySerialization().setPrettyPrinting().create().toJson(registerInfo)
         Logger.i("save registerInfo  to dir $outPath")
-        Logger.i(json)
     }
 }
