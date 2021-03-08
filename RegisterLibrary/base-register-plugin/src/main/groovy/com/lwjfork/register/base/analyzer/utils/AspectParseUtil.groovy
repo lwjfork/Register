@@ -5,9 +5,11 @@ import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
+import com.lwjfork.android.gradle.aop.utils.PluginUtils
 import com.lwjfork.aop.collector.model.CompileDirModel
 import com.lwjfork.aop.collector.model.CompileJarModel
 import com.lwjfork.aop.collector.model.CompileSingleFileModel
+import com.lwjfork.register.base.constant.AnnotationConstant
 import com.lwjfork.register.model.AspectCallMethod
 import com.lwjfork.register.model.AspectMethod
 import com.lwjfork.register.model.ParseAspectModel
@@ -16,13 +18,13 @@ import com.lwjfork.register.base.model.CallMethodInfoModel
 import com.lwjfork.register.base.model.InitMethodInfoModel
 import com.lwjfork.register.base.model.RegisterInfo
 import com.lwjfork.register.base.model.RegisterItemInfo
-import com.lwjfork.register.base.utils.PluginUtils
 import javassist.ClassPool
 import javassist.CtClass
 import javassist.CtMethod
 import javassist.Modifier
 import javassist.bytecode.AnnotationsAttribute
 import javassist.bytecode.annotation.Annotation
+
 
 class AspectParseUtil {
 
@@ -108,11 +110,11 @@ class AspectParseUtil {
         ParseAspectModel aspectModel = null
         AnnotationsAttribute classAttr = (AnnotationsAttribute) ctClass.getClassFile().getAttribute(AnnotationsAttribute.visibleTag);
         JsonObject jsonObject = new JsonObject()
-        if (!ctClass.hasAnnotation(com.lwjfork.register.base.constant.AnnotationConstant.aspectClass)) {
+        if (!ctClass.hasAnnotation(AnnotationConstant.aspectClass)) {
             return aspectModel
         }
-        if (ctClass.hasAnnotation(com.lwjfork.register.base.constant.AnnotationConstant.aspectClass)) {
-            Annotation annotation = classAttr.getAnnotation(com.lwjfork.register.base.constant.AnnotationConstant.aspectClass)
+        if (ctClass.hasAnnotation(AnnotationConstant.aspectClass)) {
+            Annotation annotation = classAttr.getAnnotation(AnnotationConstant.aspectClass)
             AnnotationParseUtil.parseSingleAnnotation(jsonObject, annotation)
         }
         if (jsonObject == null) {
@@ -143,20 +145,20 @@ class AspectParseUtil {
     private static JsonArray parseInitMethod(CtMethod ctMethod) {
         JsonArray jsonArray = new JsonArray()
         AnnotationsAttribute methodAttr = (AnnotationsAttribute) ctMethod.getMethodInfo().getAttribute(AnnotationsAttribute.visibleTag);
-        if (ctMethod.hasAnnotation(com.lwjfork.register.base.constant.AnnotationConstant.aspectMethod)) {
-            Annotation annotation = methodAttr.getAnnotation(com.lwjfork.register.base.constant.AnnotationConstant.aspectMethod)
+        if (ctMethod.hasAnnotation(AnnotationConstant.aspectMethod)) {
+            Annotation annotation = methodAttr.getAnnotation(AnnotationConstant.aspectMethod)
             AnnotationParseUtil.parseSingleAnnotations(jsonArray, annotation);
         }
-        if (ctMethod.hasAnnotation(com.lwjfork.register.base.constant.AnnotationConstant.aspectMethods)) {
-            Annotation annotation = methodAttr.getAnnotation(com.lwjfork.register.base.constant.AnnotationConstant.aspectMethods)
+        if (ctMethod.hasAnnotation(AnnotationConstant.aspectMethods)) {
+            Annotation annotation = methodAttr.getAnnotation(AnnotationConstant.aspectMethods)
             AnnotationParseUtil.parseRepeatAnnotations(jsonArray, annotation);
         }
-        if (ctMethod.hasAnnotation(com.lwjfork.register.base.constant.AnnotationConstant.aspectMethodName)) {
-            Annotation annotation = methodAttr.getAnnotation(com.lwjfork.register.base.constant.AnnotationConstant.aspectMethodName)
+        if (ctMethod.hasAnnotation(AnnotationConstant.aspectMethodName)) {
+            Annotation annotation = methodAttr.getAnnotation(AnnotationConstant.aspectMethodName)
             AnnotationParseUtil.parseSingleAnnotations(jsonArray, annotation)
         }
-        if (ctMethod.hasAnnotation(com.lwjfork.register.base.constant.AnnotationConstant.aspectMethodNames)) {
-            Annotation annotation = methodAttr.getAnnotation(com.lwjfork.register.base.constant.AnnotationConstant.aspectMethodNames)
+        if (ctMethod.hasAnnotation(AnnotationConstant.aspectMethodNames)) {
+            Annotation annotation = methodAttr.getAnnotation(AnnotationConstant.aspectMethodNames)
             AnnotationParseUtil.parseRepeatAnnotations(jsonArray, annotation);
         }
         return jsonArray
@@ -165,12 +167,12 @@ class AspectParseUtil {
     private static parseCallMethod(CtMethod ctMethod) {
         JsonArray jsonArray = new JsonArray()
         AnnotationsAttribute methodAttr = (AnnotationsAttribute) ctMethod.getMethodInfo().getAttribute(AnnotationsAttribute.visibleTag)
-        if (ctMethod.hasAnnotation(com.lwjfork.register.base.constant.AnnotationConstant.aspectCalledMethod)) {
-            Annotation annotation = methodAttr.getAnnotation(com.lwjfork.register.base.constant.AnnotationConstant.aspectCalledMethod)
+        if (ctMethod.hasAnnotation(AnnotationConstant.aspectCalledMethod)) {
+            Annotation annotation = methodAttr.getAnnotation(AnnotationConstant.aspectCalledMethod)
             AnnotationParseUtil.parseSingleAnnotations(jsonArray, annotation);
         }
-        if (ctMethod.hasAnnotation(com.lwjfork.register.base.constant.AnnotationConstant.aspectNameCalledMethod)) {
-            Annotation annotation = methodAttr.getAnnotation(com.lwjfork.register.base.constant.AnnotationConstant.aspectNameCalledMethod)
+        if (ctMethod.hasAnnotation(AnnotationConstant.aspectNameCalledMethod)) {
+            Annotation annotation = methodAttr.getAnnotation(AnnotationConstant.aspectNameCalledMethod)
             AnnotationParseUtil.parseSingleAnnotations(jsonArray, annotation);
         }
         return jsonArray
@@ -190,7 +192,7 @@ class AspectParseUtil {
         if (interfaces != null && interfaces.length > 0) {
             interfaces.each { CtClass ctClassInterfaces ->
                 // 接口被注解，则添加
-                if (ctClassInterfaces.hasAnnotation(com.lwjfork.register.base.constant.AnnotationConstant.aspectInterface)) {
+                if (ctClassInterfaces.hasAnnotation(AnnotationConstant.aspectInterface)) {
                     HashMap<String, HashSet<String>> implementsClasses = registerInfo.implementsClasses
                     HashSet<String> classes = implementsClasses.get(ctClassInterfaces.name)
                     if (classes == null) {

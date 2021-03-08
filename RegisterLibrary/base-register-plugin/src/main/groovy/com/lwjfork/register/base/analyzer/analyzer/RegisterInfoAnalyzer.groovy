@@ -1,16 +1,15 @@
 package com.lwjfork.register.base.analyzer.analyzer
 
-
-import com.lwjfork.aop.analyzer.exector.IAnalyzer
+import com.lwjfork.android.gradle.aop.analyzer.SimpleAopAnalyzer
+import com.lwjfork.android.gradle.aop.utils.PluginUtils
 import com.lwjfork.gradle.adapter.model.VariantInfoModel
 import com.lwjfork.gradle.adapter.util.PathAdapterUtil
 import com.lwjfork.gradle.utils.Logger
 import com.lwjfork.register.base.constant.RegisterConstant
 import com.lwjfork.register.base.model.RegisterInfo
-import com.lwjfork.register.base.utils.PluginUtils
 import org.gradle.api.Project
 
-class RegisterInfoAnalyzer implements IAnalyzer {
+class RegisterInfoAnalyzer extends SimpleAopAnalyzer {
 
 
     private RegisterInfo registerInfo
@@ -22,21 +21,6 @@ class RegisterInfoAnalyzer implements IAnalyzer {
         this.registerInfo = registerInfo
         this.project = project
         this.variantInfoModel = variantInfoModel
-    }
-
-    @Override
-    void before(Object res) {
-        this.outputRegisterInfo()
-    }
-
-    @Override
-    void analyze(Object res) {
-
-    }
-
-    @Override
-    void after(Object res) {
-
     }
 
 

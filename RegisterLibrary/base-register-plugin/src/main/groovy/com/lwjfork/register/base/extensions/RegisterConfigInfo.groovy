@@ -3,6 +3,7 @@ package com.lwjfork.register.base.extensions
 import com.android.annotations.NonNull
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import com.lwjfork.register.base.extensions.factory.CallMethodFactory
 import com.lwjfork.register.base.extensions.factory.InitMethodFactory
 import org.gradle.api.Action
 import org.gradle.api.NamedDomainObjectContainer
@@ -37,7 +38,7 @@ class RegisterConfigInfo {
         this.objectFactory = objectFactory
         this.project = project
         this.initMethods = project.container(InitMethod.class, new InitMethodFactory(objectFactory, project))
-        this.callMethods = project.container(CallMethod.class, new com.lwjfork.register.base.extensions.factory.CallMethodFactory(objectFactory, project))
+        this.callMethods = project.container(CallMethod.class, new CallMethodFactory(objectFactory, project))
     }
 
 

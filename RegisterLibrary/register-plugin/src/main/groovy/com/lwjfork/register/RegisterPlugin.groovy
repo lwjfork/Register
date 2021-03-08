@@ -3,7 +3,7 @@ package com.lwjfork.register
 
 import com.lwjfork.gradle.adapter.plugin.base.BasePlugin
 import com.lwjfork.gradle.utils.Logger
-import com.lwjfork.regsiter.base.RegisterProxyPlugin
+import com.lwjfork.register.base.RegisterProxyPlugin
 import org.gradle.api.Project
 
 class RegisterPlugin extends BasePlugin {

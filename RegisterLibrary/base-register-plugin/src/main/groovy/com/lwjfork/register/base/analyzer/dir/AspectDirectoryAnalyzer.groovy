@@ -1,33 +1,25 @@
 package com.lwjfork.register.base.analyzer.dir
 
-
-import com.lwjfork.aop.analyzer.exector.IDirectoryAnalyzer
+import com.lwjfork.android.gradle.aop.analyzer.dir.SimpleAopDirectoryAnalyzer
 import com.lwjfork.aop.collector.model.CompileDirModel
+import com.lwjfork.register.base.analyzer.utils.AspectParseUtil
 import com.lwjfork.register.base.model.RegisterInfo
-import javassist.ClassPool
 
-class AspectDirectoryAnalyzer implements IDirectoryAnalyzer {
+class AspectDirectoryAnalyzer extends SimpleAopDirectoryAnalyzer {
     private RegisterInfo registerInfo
-    private ClassPool classPool
 
-    AspectDirectoryAnalyzer(RegisterInfo registerInfo, ClassPool classPool) {
+    AspectDirectoryAnalyzer(RegisterInfo registerInfo) {
         this.registerInfo = registerInfo
-        this.classPool = classPool
     }
 
 
     @Override
     void before(CompileDirModel res) {
-        com.lwjfork.register.base.analyzer.utils.AspectParseUtil.parseAspectInfoForDir(res, classPool, registerInfo)
+        AspectParseUtil.parseAspectInfoForDir(res, classPool, registerInfo)
     }
 
     @Override
     void analyze(CompileDirModel res) {
-        com.lwjfork.register.base.analyzer.utils.AspectParseUtil.aspectForDir(res, classPool, registerInfo)
-    }
-
-    @Override
-    void after(CompileDirModel res) {
-
+        AspectParseUtil.aspectForDir(res, classPool, registerInfo)
     }
 }
