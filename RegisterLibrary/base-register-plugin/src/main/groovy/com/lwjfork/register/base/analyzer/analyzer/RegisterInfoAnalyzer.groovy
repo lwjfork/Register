@@ -23,12 +23,11 @@ class RegisterInfoAnalyzer extends SimpleAopAnalyzer {
         this.variantInfoModel = variantInfoModel
     }
 
+    @Override
+    void after(Void res) {
+        this.outputRegisterInfo()
+    }
 
-    /**
-     * 获取 RouterPath
-     * @param project
-     * @return
-     */
     private def getOutPutDir(Project project, VariantInfoModel variantInfoModel) {
         return PathAdapterUtil.getBuildApkOutSubDir(project, variantInfoModel)
     }

@@ -40,7 +40,7 @@ class RegisterAopTask extends CommonAopAspect{
 
     @Override
     boolean isNeedAspect() {
-        return this.spiSupport()
+        return !this.spiSupport()
     }
 
 

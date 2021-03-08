@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.lwjfork.gradle.register'
+    id 'com.agp.aop'
 }
 
 android {
@@ -45,7 +47,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
 
     implementation "${rootProject.publishGroup}:${rootProject.publishArtifactId.annotation}:${rootProject.publishVersion.annotation}"
-    kapt "${rootProject.publishGroup}:${rootProject.publishArtifactId.baseApt}:${rootProject.publishVersion.baseApt}"
+//    kapt "${rootProject.publishGroup}:${rootProject.publishArtifactId.baseApt}:${rootProject.publishVersion.baseApt}"
 
 }
 

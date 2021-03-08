@@ -7,8 +7,7 @@ import com.lwjfork.register.annotation.method.AspectMethod;
 
 import java.util.ArrayList;
 
-@AspectClass(TestBBB.class)
-@AspectClass(TestCCC.class)
+@AspectClass
 public class Test {
 
     ArrayList<TestBBB> testBBBS = new ArrayList<>();
@@ -18,15 +17,13 @@ public class Test {
     @AspectMethod(TestBBB.class)
     @AspectMethod(TestCCC.class)
     void init() {
-        this.addTestBB(new TestAAA());
-        this.addTestBB(new TestAAA());
+
     }
 
     @AspectMethod(TestBBB.class)
     @AspectMethod(TestCCC.class)
     void initAA() {
-        this.addTestBB(new TestAAA());
-        this.addTestBB(new TestAAA());
+
     }
 
     void test() {
