@@ -21,7 +21,7 @@ class RegisterConfigExtensions {
     NamedDomainObjectContainer<RegisterConfigInfo> configInfos
     Project project
     ObjectFactory objectFactory
-
+    public ArrayList<String> ignorePackage = new ArrayList<>()
     public RegisterConfigExtensions(Project project, ObjectFactory objectFactory, NamedDomainObjectContainer<RegisterConfigInfo> configInfos) {
         this.project = project
         this.objectFactory = objectFactory
@@ -30,6 +30,10 @@ class RegisterConfigExtensions {
 
     def configInfos(Action<? super NamedDomainObjectContainer<RegisterConfigInfo>> action) {
         action.execute(this.configInfos)
+    }
+
+    def ignorePackage(ArrayList<String> ignorePackage){
+        this.ignorePackage = ignorePackage
     }
 
 

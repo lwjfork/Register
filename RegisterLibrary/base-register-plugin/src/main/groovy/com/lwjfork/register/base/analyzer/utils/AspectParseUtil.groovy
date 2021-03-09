@@ -10,7 +10,9 @@ import com.lwjfork.android.gradle.aop.utils.PluginUtils
 import com.lwjfork.aop.collector.model.CompileDirModel
 import com.lwjfork.aop.collector.model.CompileJarModel
 import com.lwjfork.aop.collector.model.CompileSingleFileModel
+import com.lwjfork.gradle.utils.Logger
 import com.lwjfork.register.base.constant.AnnotationConstant
+import com.lwjfork.register.base.extensions.RegisterConfigExtensions
 import com.lwjfork.register.model.AspectCallMethod
 import com.lwjfork.register.model.AspectMethod
 import com.lwjfork.register.model.ParseAspectModel
@@ -18,35 +20,38 @@ import com.lwjfork.register.base.model.CallMethodInfoModel
 import com.lwjfork.register.base.model.InitMethodInfoModel
 import com.lwjfork.register.base.model.RegisterInfo
 import com.lwjfork.register.base.model.RegisterItemInfo
+import com.squareup.javapoet.ClassName
 import javassist.ClassPool
 import javassist.CtClass
 import javassist.CtMethod
 import javassist.Modifier
+import javassist.NotFoundException
 import javassist.bytecode.AnnotationsAttribute
+import javassist.bytecode.ClassFile
 import javassist.bytecode.annotation.Annotation
 
 
 class AspectParseUtil {
 
-    static def parseAspectInfoForDir(CompileDirModel dirModel, ClassPool classPool, RegisterInfo registerInfo) {
+    static def parseAspectInfoForDir(CompileDirModel dirModel, ClassPool classPool, RegisterInfo registerInfo, RegisterConfigExtensions configExtensions) {
         dirModel.childFiles.forEach {
-            parseAspectInfo(it, classPool, registerInfo)
+            parseAspectInfo(it, classPool, registerInfo, configExtensions)
         }
     }
 
-    static def parseAspectInfoForJar(CompileJarModel jarModel, ClassPool classPool, RegisterInfo registerInfo) {
+    static def parseAspectInfoForJar(CompileJarModel jarModel, ClassPool classPool, RegisterInfo registerInfo, RegisterConfigExtensions configExtensions) {
         jarModel.childFiles.forEach {
-            parseAspectInfo(it, classPool, registerInfo)
+            parseAspectInfo(it, classPool, registerInfo, configExtensions)
         }
     }
 
-    private static def parseAspectInfo(CompileSingleFileModel it, ClassPool classPool, RegisterInfo registerInfo) {
+    private static def parseAspectInfo(CompileSingleFileModel it, ClassPool classPool, RegisterInfo registerInfo, RegisterConfigExtensions configExtensions) {
         if (!PluginUtils.isClassFile(it.sourcePath)) {
             return
         }
         String className = PluginUtils.getClassNameByPath(it.sourcePath)
         CtClass ctClass = classPool.get(className)
-        ParseAspectModel parseAspectModel = parseAspectClass(ctClass)
+        ParseAspectModel parseAspectModel = parseAspectClass(ctClass, configExtensions)
         if (parseAspectModel != null) {
             RegisterItemInfo registerItemInfo = new RegisterItemInfo()
             registerItemInfo.className = className
@@ -89,11 +94,11 @@ class AspectParseUtil {
             }
             registerInfo.aspectClasses.put(className, registerItemInfo)
         }
-        parseInterfaceImplements(ctClass, registerInfo)
+        parseInterfaceImplements(classPool, ctClass, registerInfo, configExtensions)
     }
 
 
-    private static ParseAspectModel parseAspectClass(CtClass ctClass) throws Exception {
+    private static ParseAspectModel parseAspectClass(CtClass ctClass, RegisterConfigExtensions configExtensions) throws Exception {
         if (ctClass == null) {
             return null
         }
@@ -186,10 +191,30 @@ class AspectParseUtil {
      * @param extensions
      * @return
      */
-    private static def parseInterfaceImplements(CtClass ctClass, RegisterInfo registerInfo) {
-
-        def interfaces = ctClass.interfaces
-        if (interfaces != null && interfaces.length > 0) {
+    private static def parseInterfaceImplements(ClassPool classPool, CtClass ctClass, RegisterInfo registerInfo, RegisterConfigExtensions configExtensions) {
+        ClassFile classFile = ctClass.getClassFile2()
+        String[] ifs = classFile.getInterfaces()
+        int num = ifs.length
+        if (num == 0) {
+            return
+        }
+        ArrayList<CtClass> interfaces = new ArrayList<>()
+        for (int i = 0; i < num; ++i) {
+            String className = ifs[i]
+            String packageName = className.substring(0, className.lastIndexOf('.'))
+            if (configExtensions != null && configExtensions.ignorePackage.indexOf(packageName) != -1) {
+                continue
+            }
+            CtClass ifsCtClass
+            try {
+                ifsCtClass = classPool.get(className)
+            } catch (NotFoundException e) {
+                Logger.e("分析处理类${ctClass.name} 时，获取接口${ifs[i]}信息失败")
+                throw e
+            }
+            interfaces.add(ifsCtClass)
+        }
+        if (interfaces != null && interfaces.size() > 0) {
             interfaces.each { CtClass ctClassInterfaces ->
                 // 接口被注解，则添加
                 if (ctClassInterfaces.hasAnnotation(AnnotationConstant.aspectInterface)) {
@@ -214,13 +239,13 @@ class AspectParseUtil {
     }
 
 
-    static def aspectForDir(CompileDirModel dirModel, ClassPool classPool, RegisterInfo registerInfo) {
+    static def aspectForDir(CompileDirModel dirModel, ClassPool classPool, RegisterInfo registerInfo, RegisterConfigExtensions configExtensions) {
         dirModel.childFiles.forEach {
             aspect(registerInfo, dirModel.sourcePath, it, classPool)
         }
     }
 
-    static def aspectForJar(CompileJarModel jarModel, ClassPool classPool, RegisterInfo registerInfo) {
+    static def aspectForJar(CompileJarModel jarModel, ClassPool classPool, RegisterInfo registerInfo, RegisterConfigExtensions configExtensions) {
         jarModel.childFiles.forEach {
             aspect(registerInfo, jarModel.unzipDirPath, it, classPool)
         }

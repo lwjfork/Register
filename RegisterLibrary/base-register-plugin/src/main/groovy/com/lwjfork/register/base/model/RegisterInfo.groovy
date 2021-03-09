@@ -16,7 +16,5 @@ class RegisterInfo  {
      *  value 为接口实现类
      */
     HashMap<String, HashSet<String>> implementsClasses = new HashMap<>()
-
-
-
+    
 }

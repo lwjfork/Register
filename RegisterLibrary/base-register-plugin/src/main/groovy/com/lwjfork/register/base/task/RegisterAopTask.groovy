@@ -30,12 +30,12 @@ class RegisterAopTask extends CommonAopAspect{
         /**
          * jar包分析器
          */
-        this.analyzer.addJarAnalyzer(new AspectJarAnalyzer(registerInfo))
+        this.analyzer.addJarAnalyzer(new AspectJarAnalyzer(registerInfo,configExtensions))
 
         /**
          *  dir 分析器
          */
-        this.analyzer.addDirectoryAnalyzer(new AspectDirectoryAnalyzer(registerInfo))
+        this.analyzer.addDirectoryAnalyzer(new AspectDirectoryAnalyzer(registerInfo,configExtensions))
     }
 
     @Override
