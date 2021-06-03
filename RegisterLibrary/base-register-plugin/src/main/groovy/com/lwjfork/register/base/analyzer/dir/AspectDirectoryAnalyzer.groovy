@@ -17,11 +17,11 @@ class AspectDirectoryAnalyzer extends SimpleAopDirectoryAnalyzer {
 
     @Override
     void before(CompileDirModel res) {
-        AspectParseUtil.parseAspectInfoForDir(res, classPool, registerInfo,configExtensions)
+        AspectParseUtil.parseAspectInfoForDir(this,res, classPool, registerInfo,configExtensions)
     }
 
     @Override
     void analyze(CompileDirModel res) {
-        AspectParseUtil.aspectForDir(res, classPool, registerInfo,configExtensions)
+        AspectParseUtil.aspectForDir(this,res, classPool, registerInfo,configExtensions)
     }
 }

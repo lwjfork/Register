@@ -7,8 +7,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.5.4"
-        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.4.30"
+        classpath 'io.github.gradle-nexus:publish-plugin:1.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -16,14 +16,18 @@ plugins {
     id 'java'
     id 'groovy'
 }
-group 'com.lwjfork.register'
-version '1.0'
+
 repositories {
     mavenLocal()
     mavenCentral()
     google()
     jcenter()
 }
-apply from: '../config.gradle'
+
 dependencies {
 }
+
+
+apply from: '../config.gradle'
+
+apply from: "https://raw.githubusercontent.com/lwjfork/scriptlib/master/gradle/publish/maven/publish-root.gradle"

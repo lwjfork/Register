@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="98c0be18-2602-4878-a4e1-b3087db46092" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../RegisterLibrary/annotation/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RegisterLibrary/base-register-plugin/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RegisterLibrary/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RegisterLibrary/publish-contain-kotlin.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RegisterLibrary/register-plugin/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../RegisterLibrary/registerApt/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/annotation/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../RegisterLibrary/annotation/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/base-register-plugin/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../RegisterLibrary/base-register-plugin/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/base-register-plugin/src/main/groovy/com/lwjfork/register/base/analyzer/dir/AspectDirectoryAnalyzer.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../RegisterLibrary/base-register-plugin/src/main/groovy/com/lwjfork/register/base/analyzer/dir/AspectDirectoryAnalyzer.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/base-register-plugin/src/main/groovy/com/lwjfork/register/base/analyzer/jar/AspectJarAnalyzer.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../RegisterLibrary/base-register-plugin/src/main/groovy/com/lwjfork/register/base/analyzer/jar/AspectJarAnalyzer.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/base-register-plugin/src/main/groovy/com/lwjfork/register/base/analyzer/utils/AspectParseUtil.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/../RegisterLibrary/base-register-plugin/src/main/groovy/com/lwjfork/register/base/analyzer/utils/AspectParseUtil.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../RegisterLibrary/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../RegisterLibrary/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/register-plugin/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../RegisterLibrary/register-plugin/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/registerApt/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/registerApt/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../RegisterLibrary/registerApt/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/registerApt/src/main/java/com/lwjfork/register/apt/constant/Annotations.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/registerApt/src/main/java/com/lwjfork/register/apt/processor/base/BaseProcessor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/registerApt/src/main/java/com/lwjfork/register/apt/processor/base/IProcessor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/registerApt/src/main/java/com/lwjfork/register/apt/processor/register/RegisterCollector.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/registerApt/src/main/java/com/lwjfork/register/apt/processor/register/RegisterProcessor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/registerApt/src/main/java/com/lwjfork/register/apt/processor/service/ServiceProcessor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/registerApt/src/main/java/com/lwjfork/register/apt/utils/AnnotationValue.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/registerApt/src/main/java/com/lwjfork/register/apt/utils/JcTrees.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/registerApt/src/main/java/com/lwjfork/register/apt/utils/KotlinUtils.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/registerApt/src/main/java/com/lwjfork/register/apt/utils/MsgUtil.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/registerApt/src/main/java/com/lwjfork/register/apt/utils/ServiceUtils.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/registerApt/src/main/java/com/lwjfork/register/apt/utils/Utils.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../RegisterLibrary/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RegisterLibrary/test" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../config.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../config.gradle" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="RegisterLibrary" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1tRPXXj0KmCjlUBv3Jzk0VPg6YO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/register-apt/src/main/kotlin" />
+    <property name="settings.editor.selected.configurable" value="dev.polek.adbwifi.settings.AdbWifiConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.lwjfork.register" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="register" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/register-apt/src/main/kotlin" />
+      <recent name="$PROJECT_DIR$/register-apt/src/main/java/com/lwjfork/register/apt/constant" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="98c0be18-2602-4878-a4e1-b3087db46092" name="Default Changelist" comment="" />
+      <created>1622728968209</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1622728968209</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="304" y="393" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1622730740905">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="304" y="393" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.23.1440.877/-1920.-157.1920.1057@0.23.1440.877" timestamp="1622730740905" />
+    <state x="463" y="350" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1622730742586">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="463" y="350" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.23.1440.877/-1920.-157.1920.1057@0.23.1440.877" timestamp="1622730742586" />
+  </component>
+</project>

@@ -21,16 +21,16 @@ rootProject.ext.BINTRAY_APIKEY = System.getenv("BINTRAY_APIKEY")
 
 ext {
 
-    publishGroup = 'com.lwjfork.register'
+    publishGroup = 'io.github.lwjfork'
     publishVersion = [
             annotation: '1.0.0',
             registerApt   : '1.0.0',
             registerPlugin: '1.0.0',
-            baseRegisterPlugin: '1.0.9'
+            baseRegisterPlugin: '1.0.0'
     ]
 
     publishArtifactId = [
-            annotation: 'annotation',
+            annotation: 'RegisterAnnotation',
             registerApt   : 'registerApt',
             registerPlugin: 'register-plugin',
             baseRegisterPlugin: 'base-register-plugin'
@@ -61,10 +61,10 @@ ext {
             groovy              : 'org.codehaus.groovy:groovy-all:2.5.8',
             javassist           : 'org.javassist:javassist:3.21.0-GA',
             javapoet            : 'com.squareup:javapoet:1.11.1',
-            androidGradleAdapter: 'com.lwjfork.gradle:android-gradle-adapter:0.0.5',
-            androidGradleUtils  : 'com.lwjfork.gradle:android-gradle-utils:0.0.4',
-            commonAop           : 'com.lwjfork.gradle:common-aop:0.0.5',
-            androidGradleAop    : 'com.lwjfork.gradle:android-gradle-aop:0.0.7',
+            androidGradleAdapter: 'io.github.lwjfork:android-gradle-adapter:1.0.0',
+            androidGradleUtils  : 'io.github.lwjfork:android-gradle-utils:1.0.0',
+            commonAop           : 'io.github.lwjfork:common-aop:1.0.0',
+            androidGradleAop    : 'io.github.lwjfork:android-gradle-aop:1.0.0',
     
     ]
 

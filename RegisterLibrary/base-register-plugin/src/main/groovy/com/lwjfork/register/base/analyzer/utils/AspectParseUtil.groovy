@@ -1,10 +1,10 @@
 package com.lwjfork.register.base.analyzer.utils
 
-
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
+import com.lwjfork.android.gradle.aop.analyzer.common.ICommonAnalyzer
 import com.lwjfork.android.gradle.aop.annotation.AnnotationParseUtil
 import com.lwjfork.android.gradle.aop.utils.PluginUtils
 import com.lwjfork.aop.collector.model.CompileDirModel
@@ -13,40 +13,37 @@ import com.lwjfork.aop.collector.model.CompileSingleFileModel
 import com.lwjfork.gradle.utils.Logger
 import com.lwjfork.register.base.constant.AnnotationConstant
 import com.lwjfork.register.base.extensions.RegisterConfigExtensions
-import com.lwjfork.register.model.AspectCallMethod
-import com.lwjfork.register.model.AspectMethod
-import com.lwjfork.register.model.ParseAspectModel
 import com.lwjfork.register.base.model.CallMethodInfoModel
 import com.lwjfork.register.base.model.InitMethodInfoModel
 import com.lwjfork.register.base.model.RegisterInfo
 import com.lwjfork.register.base.model.RegisterItemInfo
-import com.squareup.javapoet.ClassName
-import javassist.ClassPool
-import javassist.CtClass
-import javassist.CtMethod
-import javassist.Modifier
-import javassist.NotFoundException
+import com.lwjfork.register.model.AspectCallMethod
+import com.lwjfork.register.model.AspectMethod
+import com.lwjfork.register.model.ParseAspectModel
+import javassist.*
 import javassist.bytecode.AnnotationsAttribute
 import javassist.bytecode.ClassFile
 import javassist.bytecode.annotation.Annotation
 
-
 class AspectParseUtil {
 
-    static def parseAspectInfoForDir(CompileDirModel dirModel, ClassPool classPool, RegisterInfo registerInfo, RegisterConfigExtensions configExtensions) {
+    static def parseAspectInfoForDir(ICommonAnalyzer commonAnalyzer, CompileDirModel dirModel, ClassPool classPool, RegisterInfo registerInfo, RegisterConfigExtensions configExtensions) {
         dirModel.childFiles.forEach {
-            parseAspectInfo(it, classPool, registerInfo, configExtensions)
+            if(commonAnalyzer.isClassFile(dirModel.sourcePath,it.sourcePath)){
+                parseAspectInfo(commonAnalyzer,dirModel.sourcePath,it, classPool, registerInfo, configExtensions)
+            }
+
         }
     }
 
-    static def parseAspectInfoForJar(CompileJarModel jarModel, ClassPool classPool, RegisterInfo registerInfo, RegisterConfigExtensions configExtensions) {
+    static def parseAspectInfoForJar(ICommonAnalyzer commonAnalyzer,CompileJarModel jarModel, ClassPool classPool, RegisterInfo registerInfo, RegisterConfigExtensions configExtensions) {
         jarModel.childFiles.forEach {
-            parseAspectInfo(it, classPool, registerInfo, configExtensions)
+            parseAspectInfo(commonAnalyzer,jarModel.unzipDirPath,it, classPool, registerInfo, configExtensions)
         }
     }
 
-    private static def parseAspectInfo(CompileSingleFileModel it, ClassPool classPool, RegisterInfo registerInfo, RegisterConfigExtensions configExtensions) {
-        if (!PluginUtils.isClassFile(it.sourcePath)) {
+    private static def parseAspectInfo(ICommonAnalyzer commonAnalyzer,String parentPath,CompileSingleFileModel it, ClassPool classPool, RegisterInfo registerInfo, RegisterConfigExtensions configExtensions) {
+        if (!commonAnalyzer.isClassFile(parentPath,it.sourcePath)) {
             return
         }
         String className = PluginUtils.getClassNameByPath(it.sourcePath)
@@ -239,15 +236,15 @@ class AspectParseUtil {
     }
 
 
-    static def aspectForDir(CompileDirModel dirModel, ClassPool classPool, RegisterInfo registerInfo, RegisterConfigExtensions configExtensions) {
+    static def aspectForDir(ICommonAnalyzer commonAnalyzer,CompileDirModel dirModel, ClassPool classPool, RegisterInfo registerInfo, RegisterConfigExtensions configExtensions) {
         dirModel.childFiles.forEach {
-            aspect(registerInfo, dirModel.sourcePath, it, classPool)
+            aspect(commonAnalyzer,dirModel.sourcePath,registerInfo, it, classPool)
         }
     }
 
-    static def aspectForJar(CompileJarModel jarModel, ClassPool classPool, RegisterInfo registerInfo, RegisterConfigExtensions configExtensions) {
+    static def aspectForJar(ICommonAnalyzer commonAnalyzer,CompileJarModel jarModel, ClassPool classPool, RegisterInfo registerInfo, RegisterConfigExtensions configExtensions) {
         jarModel.childFiles.forEach {
-            aspect(registerInfo, jarModel.unzipDirPath, it, classPool)
+            aspect(commonAnalyzer,jarModel.unzipDirPath,registerInfo, it, classPool)
         }
     }
     /**
@@ -257,8 +254,8 @@ class AspectParseUtil {
      * @param relativePath 相对路径
      * @param classPool classPool
      */
-    static def aspect(RegisterInfo registerInfo, String parentPath, CompileSingleFileModel it, ClassPool classPool) {
-        if (!PluginUtils.isClassFile(it.sourcePath)) {
+    static def aspect(ICommonAnalyzer commonAnalyzer, String parentPath,RegisterInfo registerInfo, CompileSingleFileModel it, ClassPool classPool) {
+        if (!commonAnalyzer.isClassFile(parentPath,it.sourcePath)) {
             return
         }
         String className = PluginUtils.getClassNameByPath(it.sourcePath)

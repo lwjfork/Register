@@ -11,12 +11,4 @@ tasks.jar {
         from(zipTree(element.file))
     }
 }
-
-rootProject.ext.PROJ_VERSION = rootProject.publishVersion.annotation
-rootProject.ext.PROJ_ARTIFACTID = rootProject.publishArtifactId.annotation
-rootProject.ext.PROJ_NAME = rootProject.publishArtifactId.annotation
-rootProject.ext.PROJ_PACKAGING = 'jar'
-rootProject.ext.PROJ_DESCRIPTION = 'update'
-rootProject.ext.PROJ_GROUP = rootProject.publishGroup
-//apply from:'../../publish.gradle'
-apply from:'../../publish.gradle'
+apply from: "https://raw.githubusercontent.com/lwjfork/scriptlib/master/gradle/publish/maven/jar/publish-no-kotlin.gradle"

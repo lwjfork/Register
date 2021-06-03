@@ -22,17 +22,11 @@ dependencies {
     implementation rootProject.dependenciesRep.androidGradleUtils
     implementation rootProject.dependenciesRep.commonAop
     implementation rootProject.dependenciesRep.androidGradleAop
-    implementation "${rootProject.publishGroup}:${rootProject.publishArtifactId.annotation}:${rootProject.publishVersion.annotation}"
+    implementation "io.github.lwjfork:RegisterAnnotation:1.0.0"
 }
 
 
 
-rootProject.ext.PROJ_VERSION = rootProject.publishVersion.baseRegisterPlugin
-rootProject.ext.PROJ_ARTIFACTID = rootProject.publishArtifactId.baseRegisterPlugin
-rootProject.ext.PROJ_NAME = rootProject.publishArtifactId.baseRegisterPlugin
-rootProject.ext.PROJ_PACKAGING = 'jar'
-rootProject.ext.PROJ_DESCRIPTION = 'update'
-rootProject.ext.PROJ_GROUP = rootProject.publishGroup
 
-apply from: '../../config.gradle'
-apply from: '../../publish.gradle'
+
+apply from: "https://raw.githubusercontent.com/lwjfork/scriptlib/master/gradle/publish/maven/jar/publish-no-kotlin.gradle"

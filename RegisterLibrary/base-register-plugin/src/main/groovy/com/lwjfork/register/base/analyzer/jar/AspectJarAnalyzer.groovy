@@ -16,12 +16,12 @@ class AspectJarAnalyzer extends SimpleAopJarAnalyzer{
 
     @Override
     void before(CompileJarModel res) {
-        AspectParseUtil.parseAspectInfoForJar(res, classPool, registerInfo,configExtensions)
+        AspectParseUtil.parseAspectInfoForJar(this,res, classPool, registerInfo,configExtensions)
     }
 
     @Override
     void analyze(CompileJarModel res) {
-        AspectParseUtil.aspectForJar(res, classPool, registerInfo,configExtensions)
+        AspectParseUtil.aspectForJar(this,res, classPool, registerInfo,configExtensions)
     }
 }
 
