@@ -13,6 +13,10 @@ public class Test {
     ArrayList<TestBBB> testBBBS = new ArrayList<>();
     ArrayList<TestCCC> testCCS = new ArrayList<TestCCC>();
 
+    public Test(){
+        init();
+        initAA();
+    }
 
     @AspectMethod(TestBBB.class)
     @AspectMethod(TestCCC.class)
@@ -26,7 +30,7 @@ public class Test {
 
     }
 
-    void test() {
+   public void test() {
         for (TestBBB testBBB : testBBBS) {
             testBBB.testBB();
         }

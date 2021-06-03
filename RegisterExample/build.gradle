@@ -3,19 +3,22 @@ buildscript {
     ext.kotlin_version = "1.3.72"
     repositories {
         mavenLocal()
-        google()
-        jcenter()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
         maven {
             url "https://plugins.gradle.org/m2/"
         }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:3.4.2"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.4.30"
+        classpath 'io.github.gradle-nexus:publish-plugin:1.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
         classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:0.9.18"
-        classpath "com.lwjfork.register:base-register-plugin:1.0.6"
+        classpath "io.github.lwjfork:base-register-plugin:1.0.0"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -25,8 +28,9 @@ apply from:'../config.gradle'
 allprojects {
     repositories {
         mavenLocal()
-        google()
-        jcenter()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
         maven {
             url "https://plugins.gradle.org/m2/"
         }
@@ -37,3 +41,6 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+apply from: "https://raw.githubusercontent.com/lwjfork/scriptlib/master/gradle/publish/maven/publish-root.gradle"
